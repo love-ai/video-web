@@ -16,7 +16,7 @@
   {
     path: '/welcome',
     name: 'welcome',
-    icon: 'smile',
+    icon: 'upload',
     component: './UploadVideo',
   },
   {
