@@ -50,11 +50,11 @@ export default defineConfig({
   title: false,
   ignoreMomentLocale: true,
   // proxy: proxy[REACT_APP_ENV || 'dev'],
-  proxy:  {
+  proxy: {
     '/api': {
       target: 'https://acpkp3ic6j.ap-northeast-1.awsapprunner.com',
       changeOrigin: true,
-      // pathRewrite: { '^/server': '' },
+      pathRewrite: { '^/server': '' },
     },
   },
   manifest: {

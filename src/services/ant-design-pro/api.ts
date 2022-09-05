@@ -1,6 +1,39 @@
 // @ts-ignore
 /* eslint-disable */
-import {request} from 'umi';
+import { request } from 'umi';
+
+/** 登录接口 POST /api/login/account */
+export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
+  return request<API.DataResult>('/api/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** 获取当前的用户 GET /api/videoList */
+export async function videoList(params: { userId?: number }, options?: { [key: string]: any }) {
+  return request<API.DataResult>('/api/videoList', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** 获取当前的用户 GET /api/videoList */
+export async function userList(options?: { [key: string]: any }) {
+  return request<API.DataResult>('/api/userList', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** 一下请求为demo请求可全部考虑删除 */
 
 /** 获取当前的用户 GET /api/currentUser */
 export async function currentUser(options?: { [key: string]: any }) {
@@ -16,18 +49,6 @@ export async function currentUser(options?: { [key: string]: any }) {
 export async function outLogin(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/login/outLogin', {
     method: 'POST',
-    ...(options || {}),
-  });
-}
-
-/** 登录接口 POST /api/login/account */
-export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
-  return request<API.DataResult>('/api/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
     ...(options || {}),
   });
 }

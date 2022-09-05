@@ -24,10 +24,20 @@ declare namespace API {
     address?: string;
   };
   type NetUser = {
-    id?:number;
-    name?:string;
-    mobile?:string;
-    user_type?:string
+    id?: number;
+    name?: string;
+    mobile?: string;
+    user_type?: number;
+  };
+
+  type Video = {
+    title: string;
+    thumbnail: string;
+    source_url: string;
+    like_num: number;
+    unlike_num: number;
+    hls_state: number;
+    upload_time: string;
   };
 
   type DataResult = {
