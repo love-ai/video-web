@@ -1,5 +1,5 @@
 // https://umijs.org/config/
-import {defineConfig} from 'umi';
+import { defineConfig } from 'umi';
 
 export default defineConfig({
   plugins: [
@@ -14,7 +14,8 @@ export default defineConfig({
   },
   proxy: {
     '/api': {
-      target: 'http://127.0.0.1:8080',
+      // target: 'http://127.0.0.1:8080',
+      target: 'https://acpkp3ic6j.ap-northeast-1.awsapprunner.com',
       changeOrigin: true,
       pathRewrite: { '^/server': '' },
     },
