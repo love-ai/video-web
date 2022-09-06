@@ -116,7 +116,6 @@ const Login: React.FC = () => {
             <>
               <ProFormText
                 name="mobile"
-                initialValue={'17319332997'}
                 fieldProps={{
                   size: 'large',
                   prefix: <UserOutlined className={styles.prefixIcon} />,
@@ -139,7 +138,6 @@ const Login: React.FC = () => {
               />
               <ProFormText.Password
                 name="password"
-                initialValue={'123456'}
                 fieldProps={{
                   size: 'large',
                   prefix: <LockOutlined className={styles.prefixIcon} />,
