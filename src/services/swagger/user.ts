@@ -2,7 +2,7 @@
 /* eslint-disable */
 import { request } from 'umi';
 
-/** Create user This can only be done by the logged in user. POST /user */
+/** Create User This can only be done by the logged in User. POST /User */
 export async function createUser(body: API.User, options?: { [key: string]: any }) {
   return request<any>('/user', {
     method: 'POST',
@@ -11,7 +11,7 @@ export async function createUser(body: API.User, options?: { [key: string]: any 
   });
 }
 
-/** Creates list of users with given input array POST /user/createWithArray */
+/** Creates list of users with given input array POST /User/createWithArray */
 export async function createUsersWithArrayInput(
   body: API.User[],
   options?: { [key: string]: any },
@@ -23,7 +23,7 @@ export async function createUsersWithArrayInput(
   });
 }
 
-/** Creates list of users with given input array POST /user/createWithList */
+/** Creates list of users with given input array POST /User/createWithList */
 export async function createUsersWithListInput(body: API.User[], options?: { [key: string]: any }) {
   return request<any>('/user/createWithList', {
     method: 'POST',
@@ -32,11 +32,11 @@ export async function createUsersWithListInput(body: API.User[], options?: { [ke
   });
 }
 
-/** Logs user into the system GET /user/login */
+/** Logs User into the system GET /User/login */
 export async function loginUser(
   params: {
     // query
-    /** The user name for login */
+    /** The User name for login */
     username: string;
     /** The password for login in clear text */
     password: string;
@@ -52,7 +52,7 @@ export async function loginUser(
   });
 }
 
-/** Logs out current logged in user session GET /user/logout */
+/** Logs out current logged in User session GET /User/logout */
 export async function logoutUser(options?: { [key: string]: any }) {
   return request<any>('/user/logout', {
     method: 'GET',
@@ -60,7 +60,7 @@ export async function logoutUser(options?: { [key: string]: any }) {
   });
 }
 
-/** Get user by user name GET /user/${param0} */
+/** Get User by User name GET /User/${param0} */
 export async function getUserByName(
   params: {
     // path
@@ -77,7 +77,7 @@ export async function getUserByName(
   });
 }
 
-/** Updated user This can only be done by the logged in user. PUT /user/${param0} */
+/** Updated User This can only be done by the logged in User. PUT /User/${param0} */
 export async function updateUser(
   params: {
     // path
@@ -96,7 +96,7 @@ export async function updateUser(
   });
 }
 
-/** Delete user This can only be done by the logged in user. DELETE /user/${param0} */
+/** Delete User This can only be done by the logged in User. DELETE /User/${param0} */
 export async function deleteUser(
   params: {
     // path

@@ -6,7 +6,7 @@
       {
         name: 'login',
         path: '/user/login',
-        component: './user/Login',
+        component: './user/login',
       },
       {
         component: './404',
@@ -17,21 +17,22 @@
     path: '/welcome',
     name: 'welcome',
     icon: 'upload',
-    component: './UploadVideo',
+    access: 'canAdmin',
+    component: './video/upload',
   },
   {
     path: '/admin/video/list',
     name: 'admin',
     icon: 'table',
     access: 'canAdmin',
-    component: './VideoList',
+    component: './video/list',
   },
   {
     name: 'list.table-list',
     icon: 'User',
     path: '/admin/user/list',
     access: 'canAdmin',
-    component: './UserList',
+    component: './user/list',
   },
   {
     path: '/',

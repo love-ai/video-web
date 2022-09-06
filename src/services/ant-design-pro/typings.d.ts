@@ -30,6 +30,27 @@ declare namespace API {
     user_type?: number;
   };
 
+  type LoginParams = {
+    mobile?: string;
+    password?: string;
+    autoLogin?: boolean;
+    type?: string;
+  };
+
+  type AddVideo = {
+    title: string;
+    thumbnail: string;
+    source_url: string;
+    s3_url: string;
+  };
+
+  type AddUser = {
+    name?: string;
+    mobile?: string;
+    user_type?: number;
+    password?: string;
+  };
+
   type Video = {
     title: string;
     thumbnail: string;
@@ -76,13 +97,6 @@ declare namespace API {
   type FakeCaptcha = {
     code?: number;
     status?: string;
-  };
-
-  type LoginParams = {
-    mobile?: string;
-    password?: string;
-    autoLogin?: boolean;
-    type?: string;
   };
 
   type ErrorResponse = {
