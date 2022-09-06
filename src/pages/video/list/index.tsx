@@ -3,12 +3,15 @@ import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { Space } from 'antd';
 import React from 'react';
 import { videoList } from '@/services/ant-design-pro/api';
+import styles from './index.less';
+import { localStore } from '@/utils/utils';
 
 const VideoList: React.FC = () => {
   // 请求table数据
   const getVideoList = async () => {
+    const { userid } = JSON.parse(localStore.getItem('userInfo') || '{}');
     const params = {
-      userId: 1,
+      userId: userid,
     };
     try {
       const data = await videoList(params);
@@ -34,7 +37,7 @@ const VideoList: React.FC = () => {
       title: '视频封面',
       render: (dom, record) => (
         <Space>
-          <img src={record.thumbnail} width={120} />
+          <img src={record.thumbnail} className={styles.imgStyle} />
         </Space>
       ),
     },

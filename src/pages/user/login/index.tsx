@@ -1,19 +1,19 @@
 import Footer from '@/components/Footer';
-import {login} from '@/services/ant-design-pro/api';
-import {LockOutlined, UserOutlined,} from '@ant-design/icons';
-import {LoginForm, ProFormText} from '@ant-design/pro-components';
-import {Alert, message, Tabs} from 'antd';
-import React, {useState} from 'react';
-import {FormattedMessage, history, useIntl} from 'umi';
+import { login } from '@/services/ant-design-pro/api';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { LoginForm, ProFormText } from '@ant-design/pro-components';
+import { Alert, message, Tabs } from 'antd';
+import React, { useState } from 'react';
+import { FormattedMessage, history, useIntl } from 'umi';
 import styles from './index.less';
-import {useModel} from "@@/plugin-model/useModel";
-import {localStore} from '@/utils/utils';
+import { useModel } from '@@/plugin-model/useModel';
+import { localStore } from '@/utils/utils';
 
-const MD5 = require('md5.js')
+const MD5 = require('md5.js');
 
 const LoginMessage: React.FC<{
   content: string;
-}> = ({content}) => (
+}> = ({ content }) => (
   <Alert
     style={{
       marginBottom: 24,
@@ -27,7 +27,7 @@ const LoginMessage: React.FC<{
 const Login: React.FC = () => {
   const [userLoginState, setUserLoginState] = useState<number>(0);
   const [type, setType] = useState<string>('account');
-  const {initialState, setInitialState} = useModel('@@initialState');
+  const { initialState, setInitialState } = useModel('@@initialState');
 
   const intl = useIntl();
 
@@ -35,10 +35,10 @@ const Login: React.FC = () => {
     await initialState?.fetchUserInfo?.();
     const userModel = {
       name: user.name,
-      userid: user.id + "",
+      userid: user.id + '',
       phone: user.mobile,
-      access: "admin",
-    }
+      access: user.user_type === 2 ? 'admin' : 'user',
+    };
     localStore.setItem('userInfo', JSON.stringify(userModel));
     await setInitialState((s) => ({
       ...s,
@@ -50,7 +50,7 @@ const Login: React.FC = () => {
     try {
       // 登录
       values.password = new MD5().update(values.password).digest('hex');
-      const res = await login({...values});
+      const res = await login({ ...values });
       if (res.code === 0) {
         // @ts-ignore
         const defaultLoginSuccessMessage = intl.formatMessage({
@@ -62,8 +62,8 @@ const Login: React.FC = () => {
         await fetchUserInfo(res.data.user);
         /** 此方法会跳转到 redirect 参数所在的位置 */
         if (!history) return;
-        const {query} = history.location;
-        const {redirect} = query as { redirect: string };
+        const { query } = history.location;
+        const { redirect } = query as { redirect: string };
         history.push(redirect || '/');
         return;
       }
@@ -84,9 +84,9 @@ const Login: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <LoginForm
-          logo={<img alt="logo" src="/logo.png"/>}
+          logo={<img alt="logo" src="/logo.png" />}
           title="培训管理"
-          subTitle={intl.formatMessage({id: 'pages.layouts.userLayout.title'})}
+          subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
           initialValues={{
             autoLogin: true,
           }}
@@ -116,10 +116,10 @@ const Login: React.FC = () => {
             <>
               <ProFormText
                 name="mobile"
-                initialValue={"17319332997"}
+                initialValue={'17319332997'}
                 fieldProps={{
                   size: 'large',
-                  prefix: <UserOutlined className={styles.prefixIcon}/>,
+                  prefix: <UserOutlined className={styles.prefixIcon} />,
                 }}
                 placeholder={intl.formatMessage({
                   id: 'pages.login.username.placeholder',
@@ -139,10 +139,10 @@ const Login: React.FC = () => {
               />
               <ProFormText.Password
                 name="password"
-                initialValue={"123456"}
+                initialValue={'123456'}
                 fieldProps={{
                   size: 'large',
-                  prefix: <LockOutlined className={styles.prefixIcon}/>,
+                  prefix: <LockOutlined className={styles.prefixIcon} />,
                 }}
                 placeholder={intl.formatMessage({
                   id: 'pages.login.password.placeholder',
@@ -164,7 +164,7 @@ const Login: React.FC = () => {
           )}
         </LoginForm>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
