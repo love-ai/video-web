@@ -48,7 +48,15 @@ const Index: React.FC = () => {
             await handleSubmit(values);
           }}
         >
-          <ProFormText name="name" width="md" label="视频名称" placeholder="请输入名称" />
+          <ProFormText
+            fieldProps={{
+              maxLength: 50,
+            }}
+            name="name"
+            width="md"
+            label="视频名称"
+            placeholder="请输入名称"
+          />
           <UploadPicComponent
             onResult={(path) => {
               setPicPath(path);
