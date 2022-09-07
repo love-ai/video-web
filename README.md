@@ -50,6 +50,11 @@ npm run lint:fix
 npm test
 ```
 
-## More
+### Deploy to AppRunner
 
-You can view full document on our [official website](https://pro.ant.design). And welcome any feedback in our [github](https://github.com/ant-design/ant-design-pro).
+1. Use aws connect for github to link your project.
+2. Select Nodejs 14 environment
+3. config the port to 8000
+4. install command: `npm install`
+5. start command :`npm start`
+6. other configs use default
