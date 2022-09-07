@@ -53,7 +53,7 @@ export default class UploadVideoComponent extends React.Component {
   public render() {
     return (
       // @ts-ignore
-      <Upload {...props} customRequest={this.upload}>
+      <Upload {...props} customRequest={this.upload} maxCount={1}>
         <br />
         <div>上传视频</div>
         <Button icon={<UploadOutlined />}>单击上传</Button>

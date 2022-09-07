@@ -1,6 +1,6 @@
 import React from 'react';
-import type { UploadFile } from 'antd';
-import { Button, Upload } from 'antd';
+import type { UploadFile, UploadProps } from 'antd';
+import { Button, message, Upload } from 'antd';
 import { Upload$ } from '@/pages/video/upload/s3service';
 import { UploadOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
@@ -11,6 +11,22 @@ interface IParam {
   onError: () => void;
   file: UploadFile & { webkitRelativePath: string };
 }
+
+const props: UploadProps = {
+  beforeUpload: (file) => {
+    console.log(file.name);
+    console.log(file.type);
+    const isPic =
+      file.type === 'image/png' || file.type === 'image/jpeg' || file.type === 'image/jpg';
+    if (!isPic) {
+      message.error(`${file.name} is not a picture file`);
+    }
+    return isPic || Upload.LIST_IGNORE;
+  },
+  onChange: (info) => {
+    console.log(info.fileList);
+  },
+};
 
 export default class UploadPicComponent extends React.Component {
   public bucket: string = 'carlwe-bucket'; // 您要上传到的bucket名字
@@ -35,7 +51,7 @@ export default class UploadPicComponent extends React.Component {
   public render() {
     return (
       // @ts-ignore
-      <Upload customRequest={this.upload}>
+      <Upload {...props} customRequest={this.upload} maxCount={1}>
         <div>视频封面</div>
         <Button icon={<UploadOutlined />}>单击上传</Button>
       </Upload>
