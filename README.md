@@ -53,7 +53,7 @@ npm test
 ### Deploy to AppRunner
 
 1. Use aws connect for github to link your project.
-2. Select Nodejs 14 environment
+2. Select Nodejs 14 as environment
 3. config the port to 8000
 4. install command: `npm install`
 5. start command :`npm start`
