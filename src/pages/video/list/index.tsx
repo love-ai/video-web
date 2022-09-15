@@ -46,10 +46,6 @@ const VideoList: React.FC = () => {
       title: '视频标题',
     },
     {
-      dataIndex: 'source_url',
-      title: '原地址',
-    },
-    {
       dataIndex: 'upload_time',
       width: 300,
       title: '上传时间',
@@ -57,12 +53,12 @@ const VideoList: React.FC = () => {
     {
       dataIndex: 'like_num',
       width: 150,
-      title: '点赞数',
+      title: '点赞',
     },
     {
       dataIndex: 'unlike_num',
       width: 150,
-      title: '踩数',
+      title: '踩',
     },
     {
       dataIndex: 'hls_state',
