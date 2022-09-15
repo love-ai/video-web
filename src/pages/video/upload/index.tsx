@@ -5,6 +5,7 @@ import UploadPicComponent from '@/components/Upload/UploadPicComponent';
 import UploadVideoComponent from '@/components/Upload/UploadVideoComponent';
 import { addVideo } from '@/services/ant-design-pro/api';
 import { history } from '@@/core/history';
+import { localStore } from '@/utils/utils';
 
 const Index: React.FC = () => {
   const [picPath, setPicPath] = useState('');
@@ -24,11 +25,13 @@ const Index: React.FC = () => {
       message.error(`请上传视频`);
       return;
     }
+    const { userid } = JSON.parse(localStore.getItem('userInfo') || '{}');
     const param = {
       title: value.name,
       thumbnail: picPath,
       s3_url: s3Url,
       source_url: sourceUrl,
+      create_user_id: userid,
     };
     const res = await addVideo({ ...param });
     if (res.code === 0) {
